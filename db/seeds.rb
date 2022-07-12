@@ -55,4 +55,20 @@ puts "Creating matches..."
     )
 end
 
+5.times do
+    Match.create(
+        swipe_user: [true, false].sample,
+        user_id: User.all.sample.id, 
+        profile_id: Profile.all.sample.id 
+    )
+end
+
+5.times do
+    Match.create(
+        swipe_profile: [true, false].sample,
+        user_id: User.all.sample.id, 
+        profile_id: Profile.all.sample.id 
+    )
+end
+
 puts "✅ Done seeding!"

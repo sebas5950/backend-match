@@ -7,4 +7,7 @@ class User < ActiveRecord::Base
             match.profile
         end
     end
+    def not_swiped
+        self.profiles.where(swipe_user: "NULL")
+    end
 end

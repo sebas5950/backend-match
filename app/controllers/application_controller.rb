@@ -3,8 +3,25 @@ class ApplicationController < Sinatra::Base
   
   # Add your routes here
   get "/matches/:id" do
-    currentUserMatches = User.find(params[:id]).all_matches
-    currentUserMatches.to_json
+    User.find(params[:id]).all_matches.to_json
+  end
+
+  get "/matches/:user_id/:profile_id/check" do
+    Match.find_or_create_by(params[:user_id], params[:profile_id])
+  end
+
+  # get "/matches/:id/new" do
+
+  # end
+
+  get "/profiles/swiper/:id" do
+    # arr = User.find(5).matches.each do |x|
+    #   Profile.where.not(id: x.profile_id)
+    # end
+    # toGo = arr.each do |x|
+    #   x.profile
+    # end
+    # toGo.to_json
   end
 
   get "/profiles/:id" do

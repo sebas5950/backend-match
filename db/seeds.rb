@@ -4,6 +4,18 @@ Match.delete_all
 User.delete_all
 Profile.delete_all
 
+puts "Creating default instances..."
+
+User.create(
+    name: "John Smith",
+    age: 25,
+    gender: "Male",
+    sexuality: "Gay",
+    info: "I'm a really cool guy.",
+    location: "Chicago, Illinois",
+    image: Faker::Avatar.image(slug: "my-own-slug", size: "50x50", format: "jpg")
+)
+
 puts "Creating users..."
 
 10.times do

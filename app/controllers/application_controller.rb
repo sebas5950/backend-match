@@ -11,10 +11,9 @@ class ApplicationController < Sinatra::Base
     toSend.to_json
   end
 
-  get "/matches/:user_id/:profile_id/update" do
+  patch "/matches/:user_id/:profile_id/update" do
     toUpdate = Match.find(params[:user_id], params[:profile_id])
-    # toUpdate = Match.find(params[:user_id, :profile_id])
-    # toUpdate = Match.find(params[:user_id][:profile_id])
+    toUpdate.update(params)
     toUpdate.to_json
   end
 

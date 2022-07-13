@@ -9,4 +9,5 @@ class Match < ActiveRecord::Base
         # return Match.find(user_id: user_id, profile_id)
         Match.find_or_create_by(user_id: user_id, profile_id: profile_id)
     end
+    
 end

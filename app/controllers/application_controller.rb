@@ -17,6 +17,12 @@ class ApplicationController < Sinatra::Base
     toUpdate.to_json
   end
 
+  delete "/matches/:user_id/:profile_id/delete" do
+    toDelete = Match.find(params[:user_id], params[:profile_id])
+    toDelete.destroy
+    toDelete.to_json
+  end
+
   get "/profiles/swiper/:id" do
     User.find(params[:id]).not_swiped.to_json
   end
@@ -43,5 +49,7 @@ class ApplicationController < Sinatra::Base
   post "/users" do
     user = User.create(params) &&  Profile.create(params)
   end
+
+
 
 end

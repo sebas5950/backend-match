@@ -6,16 +6,17 @@ class ApplicationController < Sinatra::Base
     User.find(params[:id]).all_matches.to_json
   end
 
-  get "/matches/:user_id/:profile_id/check" do
-    toSend = Match.check_match params[:user_id], params[:profile_id]
-    toSend.to_json
-  end
-
-  patch "/matches/:user_id/:profile_id/update" do
-    toUpdate = Match.find(params[:user_id], params[:profile_id])
-    toUpdate.update(params)
+  patch "/matches/:user_id/:profile_id/:swipe_user" do
+    toUpdate = Match.check_match params[:user_id], params[:profile_id]
+    toUpdate.update(swipe_user: params[:swipe_user])
     toUpdate.to_json
   end
+
+  # patch "/matches/:user_id/:profile_id/update" do
+  #   toUpdate = Match.find_by(params[:user_id], params[:profile_id])
+  #   toUpdate.update(params)
+  #   toUpdate.to_json
+  # end
 
   get "/profiles/swiper/:id" do
     User.find(params[:id]).not_swiped.to_json

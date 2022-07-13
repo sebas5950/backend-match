@@ -4,7 +4,7 @@ Match.delete_all
 User.delete_all
 Profile.delete_all
 
-puts "Creating default instances..."
+puts "Creating default User"
 
 User.create(
     name: "John Smith",
@@ -15,20 +15,6 @@ User.create(
     location: "Chicago, Illinois",
     image: Faker::Avatar.image(slug: "my-own-slug", size: "50x50", format: "jpg")
 )
-
-puts "Creating users..."
-
-10.times do
-    User.create(
-        name: Faker::Name.name,
-        age: Faker::Number.between(from: 18, to: 50),
-        gender: ["Male", "Female", "Nonbinary"].sample,
-        sexuality: ["Gay", "Straight", "Bisexual"].sample,
-        info: Faker::Quote.fortune_cookie,
-        location: Faker::Address.city,
-        image: Faker::Avatar.image(slug: "my-own-slug", size: "50x50", format: "jpg")
-    )
-end
 
 puts "Creating profiles..."
 
@@ -46,29 +32,48 @@ end
 
 puts "Creating matches..."
 
-40.times do
-    Match.create(
-        swipe_user: [true, false].sample,
-        swipe_profile: [true, false].sample,
-        user_id: User.all.sample.id, 
-        profile_id: Profile.all.sample.id 
-    )
-end
+Match.create(
+    swipe_profile: true,
+    user_id: 1,
+    profile_id: 1
+)
+Match.create(
+    swipe_profile: false,
+    user_id: 1,
+    profile_id: 2
+)
 
-5.times do
-    Match.create(
-        swipe_user: [true, false].sample,
-        user_id: User.all.sample.id, 
-        profile_id: Profile.all.sample.id 
-    )
-end
+# 10.times do
+#     Match.create(
+#         swipe_profile: [true, false].sample,
+#         user_id: 1, 
+#         profile_id: Profile.all.sample.id 
+#     )
+# end
 
-5.times do
-    Match.create(
-        swipe_profile: [true, false].sample,
-        user_id: User.all.sample.id, 
-        profile_id: Profile.all.sample.id 
+# 5.times do
+#     Match.create(
+#         swipe_user: [true, false].sample,
+#         user_id: 1, 
+#         profile_id: Profile.all.sample.id 
+#     )
+# end
+
+puts "Creating guaranteed match"
+    Profile.create(
+        name: "Sure Thing",
+        age: 69,
+        gender: "Nonbinary",
+        sexuality: "Straight",
+        info: "Definitely",
+        location: Faker::Address.city,
+        image: Faker::Avatar.image(slug: "my-own-slug", size: "50x50", format: "jpg") 
     )
-end
+    Match.create(
+        swipe_user: true,
+        swipe_profile: true,
+        user_id: 1 ,
+        profile_id: 21 
+    )
 
 puts "✅ Done seeding!"

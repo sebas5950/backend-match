@@ -40,4 +40,8 @@ class ApplicationController < Sinatra::Base
     user.update(params)
   end
 
+  post "/users" do
+    user = User.create(params) &&  Profile.create(params)
+  end
+
 end

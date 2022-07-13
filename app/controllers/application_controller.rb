@@ -12,6 +12,13 @@ class ApplicationController < Sinatra::Base
     toUpdate.to_json
   end
 
+
+  delete "/matches/:user_id/:profile_id/delete" do
+    toDelete = Match.check_match params[:user_id], params[:profile_id]
+    toDelete.destroy
+    toDelete.to_json
+  end
+
   # patch "/matches/:user_id/:profile_id/update" do
   #   toUpdate = Match.find_by(params[:user_id], params[:profile_id])
   #   toUpdate.update(params)
@@ -44,5 +51,7 @@ class ApplicationController < Sinatra::Base
   post "/users" do
     user = User.create(params) &&  Profile.create(params)
   end
+
+
 
 end

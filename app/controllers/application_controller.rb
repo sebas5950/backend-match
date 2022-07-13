@@ -7,21 +7,19 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/matches/:user_id/:profile_id/check" do
-    Match.find_or_create_by(params[:user_id], params[:profile_id])
+    toSend = Match.check_match params[:user_id], params[:profile_id]
+    toSend.to_json
   end
 
-  # get "/matches/:id/new" do
-
-  # end
+  get "/matches/:user_id/:profile_id/update" do
+    toUpdate = Match.find(params[:user_id], params[:profile_id])
+    # toUpdate = Match.find(params[:user_id, :profile_id])
+    # toUpdate = Match.find(params[:user_id][:profile_id])
+    toUpdate.to_json
+  end
 
   get "/profiles/swiper/:id" do
-    # arr = User.find(5).matches.each do |x|
-    #   Profile.where.not(id: x.profile_id)
-    # end
-    # toGo = arr.each do |x|
-    #   x.profile
-    # end
-    # toGo.to_json
+    User.find(params[:id]).not_swiped.to_json
   end
 
   get "/profiles/:id" do

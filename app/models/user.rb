@@ -8,6 +8,14 @@ class User < ActiveRecord::Base
         end
     end
     def not_swiped
-        self.profiles.where(swipe_user: "NULL")
+        not_seen = []
+        Profile.all.each do |prof|
+            self.matches.each do |match|
+                if(match.profile_id != prof.id)
+                    not_seen << prof
+                end
+            end
+        end
+        return not_seen.uniq
     end
 end

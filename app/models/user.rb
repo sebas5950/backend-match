@@ -7,7 +7,14 @@ class User < ActiveRecord::Base
             match.profile
         end
     end
+    def potential_matches
+       self.matches.where(swipe_user: nil).collect do |match|
+            match.profile
+        end
+    end
     def not_swiped
-        Profile.all
+        self.potential_matches.collect do |pot|
+            Profile.where(id: pot.id)[0]
+        end
     end
 end

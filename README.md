@@ -13,4 +13,4 @@ Welcome to our Phase 3 project backend! Here, you will find the resources to sta
 3. Run `bundle install` in your terminal.
 4. Run `rake server` to start the backend server.
 
-And then you are good to go! To access the frontend setup of Smash or Pass, click [here]{https://github.com/sebas5950/ship-it-or-sink-it/blob/main/README.md}.
+And then you are good to go! To access the frontend setup of Smash or Pass, click {here}[https://github.com/sebas5950/ship-it-or-sink-it/blob/main/README.md].

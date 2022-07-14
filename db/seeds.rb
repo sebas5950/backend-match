@@ -33,17 +33,20 @@ end
 puts "Creating matches..."
 
 Match.create(
-    swipe_profile: true,
+swipe_user: true,    
+swipe_profile: true,
     user_id: 1,
     profile_id: 1
 )
 Match.create(
-    swipe_profile: false,
+    swipe_user: true,      
+swipe_profile: false,
     user_id: 1,
     profile_id: 2
 )
 Match.create(
-    swipe_profile: true,
+    swipe_user: true,      
+swipe_profile: true,
     user_id: 1,
     profile_id: 3
 )
@@ -62,6 +65,37 @@ Match.create(
     user_id: 1,
     profile_id: 6
 )
+Match.create(
+    swipe_profile: true,
+    user_id: 1,
+    profile_id: 7
+)
+Match.create(
+    swipe_profile: false,
+    user_id: 1,
+    profile_id: 8
+)
+Match.create(
+    swipe_profile: true,
+    user_id: 1,
+    profile_id: 9
+)
+Match.create(
+    swipe_profile: false,
+    user_id: 1,
+    profile_id: 10
+)
+Match.create(
+    swipe_profile: true,
+    user_id: 1,
+    profile_id: 11
+)
+Match.create(
+    swipe_profile: false,
+    user_id: 1,
+    profile_id: 12
+)
+
 
 puts "Creating guaranteed match"
     Profile.create(
@@ -78,6 +112,22 @@ puts "Creating guaranteed match"
         swipe_profile: true,
         user_id: 1 ,
         profile_id: 21 
+    )
+puts "Creating guaranteed not match"
+    Profile.create(
+        name: "Not A Thing",
+        age: 0,
+        gender: "Nonbinary",
+        sexuality: "Bisexual",
+        info: "Nope",
+        location: Faker::Address.city,
+        image: Faker::Avatar.image(slug: "my-own-slug", size: "300x300", format: "jpg") 
+    )
+    Match.create(
+        swipe_user: false,
+        swipe_profile: false,
+        user_id: 1 ,
+        profile_id: 22 
     )
 
 puts "✅ Done seeding!"

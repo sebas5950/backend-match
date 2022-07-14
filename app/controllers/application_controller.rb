@@ -19,12 +19,6 @@ class ApplicationController < Sinatra::Base
     toDelete.to_json
   end
 
-  # patch "/matches/:user_id/:profile_id/update" do
-  #   toUpdate = Match.find_by(params[:user_id], params[:profile_id])
-  #   toUpdate.update(params)
-  #   toUpdate.to_json
-  # end
-
   get "/profiles/swiper/:id" do
     User.find(params[:id]).not_swiped.to_json
   end
@@ -46,6 +40,7 @@ class ApplicationController < Sinatra::Base
   patch "/users/:id" do
     user = User.find(params[:id])
     user.update(params)
+    user.to_json
   end
 
   post "/users" do

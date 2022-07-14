@@ -26,7 +26,7 @@ puts "Creating profiles..."
         sexuality: ["Gay", "Straight", "Bisexual"].sample,
         info: Faker::Quote.fortune_cookie,
         location: Faker::Address.city,
-        image: Faker::Avatar.image(slug: "my-own-slug", size: "50x50", format: "jpg")
+        image: Faker::Avatar.image(slug: "my-own-slug", size: "300x300", format: "jpg")
     )
 end
 
@@ -42,22 +42,26 @@ Match.create(
     user_id: 1,
     profile_id: 2
 )
-
-# 10.times do
-#     Match.create(
-#         swipe_profile: [true, false].sample,
-#         user_id: 1, 
-#         profile_id: Profile.all.sample.id 
-#     )
-# end
-
-# 5.times do
-#     Match.create(
-#         swipe_user: [true, false].sample,
-#         user_id: 1, 
-#         profile_id: Profile.all.sample.id 
-#     )
-# end
+Match.create(
+    swipe_profile: true,
+    user_id: 1,
+    profile_id: 3
+)
+Match.create(
+    swipe_profile: false,
+    user_id: 1,
+    profile_id: 4
+)
+Match.create(
+    swipe_profile: true,
+    user_id: 1,
+    profile_id: 5
+)
+Match.create(
+    swipe_profile: false,
+    user_id: 1,
+    profile_id: 6
+)
 
 puts "Creating guaranteed match"
     Profile.create(
@@ -67,7 +71,7 @@ puts "Creating guaranteed match"
         sexuality: "Straight",
         info: "Definitely",
         location: Faker::Address.city,
-        image: Faker::Avatar.image(slug: "my-own-slug", size: "50x50", format: "jpg") 
+        image: Faker::Avatar.image(slug: "my-own-slug", size: "300x300", format: "jpg") 
     )
     Match.create(
         swipe_user: true,

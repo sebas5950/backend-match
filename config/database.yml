@@ -25,7 +25,7 @@ test:
 
 production:
   adapter: postgresql
-  database: sch_database #rename this to whatever you want
+  database: development.sqlite3 #rename this to whatever you want
   username: username
   password: password
   host: localhost
